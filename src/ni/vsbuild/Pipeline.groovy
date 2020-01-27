@@ -10,6 +10,7 @@ class Pipeline implements Serializable {
 
    def script
    PipelineInformation pipelineInformation
+   def stages = []
 
    static class Builder implements Serializable {
 
@@ -112,9 +113,9 @@ class Pipeline implements Serializable {
                configuration.printInformation(script)
 
                def builder = new Builder(script, configuration, lvVersion, MANIFEST_FILE)
-               def stages = builder.buildPipeline()
+               this.stages = builder.buildPipeline()
 
-               executeStages(stages)
+               executeStages()
             }
          }
       }
@@ -124,7 +125,7 @@ class Pipeline implements Serializable {
       validateBuild()
    }
 
-   protected void executeStages(stages) {
+   protected void executeStages() {
       for (Stage stage : stages) {
          try {
             stage.execute()
@@ -140,7 +141,7 @@ class Pipeline implements Serializable {
       script.stage("Checkout_$lvVersion") {
          script.deleteDir()
          script.echo 'Attempting to get source from repo.'
-         script.timeout(time: 5, unit: 'MINUTES'){
+         script.timeout(time: 30, unit: 'MINUTES'){
             manifest['scm'] = script.checkout(script.scm)
          }
       }

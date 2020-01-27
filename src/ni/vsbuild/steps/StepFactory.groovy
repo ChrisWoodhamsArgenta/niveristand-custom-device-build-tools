@@ -31,6 +31,14 @@ class StepFactory implements Serializable {
       if(type == 'lvRunVi') {
          return new LvRunViStep(script, mapStep, lvVersion)
       }
+	  
+	  if(type == 'lvMassCompile') {
+         return new LvMassCompileStep(script, mapStep, lvVersion)
+      }
+	  
+	  if(type == 'lvRunVIAnalyzer') {
+         return new LvRunVIAnalyzerStep(script, mapStep, lvVersion)
+      }
 
       if(type == 'lvSetConditionalSymbol') {
          return new LvSetConditionalSymbolStep(script, mapStep, lvVersion)
@@ -38,6 +46,10 @@ class StepFactory implements Serializable {
 
       if(type == 'lvVITester') {
          return new LvVITesterStep(script, mapStep, lvVersion)
+      }
+	  
+	  if(type == 'runCmd') {
+         return new RunCmdStep(script, mapStep, lvVersion)
       }
 
       script.failBuild("Type \'$type\' is invalid for step \'${mapStep.get('name')}\'.")
