@@ -5,6 +5,7 @@ import ni.vsbuild.BuildConfiguration
 class LvRunViStep extends LvStep {
 
    def vi
+   def args
 
    LvRunViStep(script, mapStep, lvVersion) {
       super(script, mapStep, lvVersion)
