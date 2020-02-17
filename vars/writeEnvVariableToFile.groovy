@@ -5,5 +5,5 @@ def call(variable, variable_value, path){
 	echo myVar
 	myVar = env.GIT_BRANCH
 	echo myVar
-     bat "echo $myVar > \"$WORKSPACE\\${path}\""
+     bat "echo %GIT_BRANCH%> \"$WORKSPACE\\${path}\""
 }
