@@ -51,6 +51,10 @@ class StepFactory implements Serializable {
 	  if(type == 'runCmd') {
          return new RunCmdStep(script, mapStep, lvVersion)
       }
+	  
+	  if(type == 'writeEnvVariableToFile') {
+         return new WriteEnvVariableToFileStep(script, mapStep, lvVersion)
+      }
 
       script.failBuild("Type \'$type\' is invalid for step \'${mapStep.get('name')}\'.")
    }
