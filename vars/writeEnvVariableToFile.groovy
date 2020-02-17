@@ -1,9 +1,7 @@
-def call(variable, path){
+def call(variable, variable_value, path){
    echo "writing enviroment variable to a file"
    // not finished it will output only GIT_BRANCH
-	echo script.env.JOB_NAME
-	echo script.env.GIT_BRANCH
-	def myVar = script.env.GIT_BRANCH
+	def myVar = variable_value
 	echo myVar
      bat "echo $myVar > \"$WORKSPACE\\${path}\""
 }
