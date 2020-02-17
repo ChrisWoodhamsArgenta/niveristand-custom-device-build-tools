@@ -5,5 +5,5 @@ def call(variable, path){
 	println env.GIT_BRANCH
 	def myVar = build.getBuildVariables().get('GIT_BRANCH')
 	println myVar
-     bat "echo $GIT_BRANCH > \"$WORKSPACE\\${path}\""
+     bat "echo $myVar > \"$WORKSPACE\\${path}\""
 }
