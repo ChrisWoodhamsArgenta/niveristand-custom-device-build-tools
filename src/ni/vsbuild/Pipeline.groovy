@@ -93,7 +93,6 @@ class Pipeline implements Serializable {
 
       // build dependencies before starting this pipeline
       script.buildDependencies(pipelineInformation)
-	  setConfigFile()
       def builders = [:]
 
       for(String version : pipelineInformation.lvVersions) {
@@ -117,7 +116,7 @@ class Pipeline implements Serializable {
 				//script.echo "${currentBuild.getBuildCauses('hudson.triggers.TimerTrigger$TimerTriggerCause')}"
 				// started by user
 				//script.echo "${currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')}"
-
+			   setConfigFile()
                def configuration = BuildConfiguration.load(script, configurationFile, lvVersion)
                configuration.printInformation(script)
 
@@ -150,8 +149,8 @@ class Pipeline implements Serializable {
 	//	def workspace2 = script.manager.build.getEnvVars()["WORKSPACE"]
 	//	script.echo workspace2
 		def workspacePath = script.env.WORKSPACE
-		def fullPath = "$script.env.WORKSPACE\$filePath"
 		script.echo workspacePath
+		def fullPath = "$script.env.WORKSPACE\$filePath"
 		script.echo fullPath
 		def folder = new File(fullPath)
 		return folder.exists()
