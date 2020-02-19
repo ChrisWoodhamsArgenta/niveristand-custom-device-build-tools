@@ -1,3 +1,6 @@
+echo %1
+echo %2
+
 @echo off
 set "venv_path=env"
 
