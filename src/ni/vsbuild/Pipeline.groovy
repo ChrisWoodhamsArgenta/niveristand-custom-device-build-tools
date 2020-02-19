@@ -18,6 +18,7 @@ class Pipeline implements Serializable {
       BuildConfiguration buildConfiguration
       String lvVersion
       String manifestFile
+	  String configurationFile
       def stages = []
 
       Builder(def script, BuildConfiguration buildConfiguration, String lvVersion, String manifestFile) {
@@ -25,6 +26,7 @@ class Pipeline implements Serializable {
          this.buildConfiguration = buildConfiguration
          this.lvVersion = lvVersion
          this.manifestFile = manifestFile
+		 this.configurationFile = getConfigFile()
       }
 
       def withCodegenStage() {
@@ -88,7 +90,6 @@ class Pipeline implements Serializable {
    }
 
    Pipeline(script, PipelineInformation pipelineInformation) {
-	  this.config_file = getConfigFile()
       this.script = script
       this.pipelineInformation = pipelineInformation
    }
