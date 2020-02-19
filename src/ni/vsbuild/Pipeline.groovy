@@ -93,7 +93,7 @@ class Pipeline implements Serializable {
 
       // build dependencies before starting this pipeline
       script.buildDependencies(pipelineInformation)
-
+	  setConfigFile()
       def builders = [:]
 
       for(String version : pipelineInformation.lvVersions) {
@@ -137,6 +137,11 @@ class Pipeline implements Serializable {
    	private void setConfigFile() {
          configurationFile =  'build.json'
 	}
+	
+	def doesFileExist(filePath) {
+		def folder = new File( filePath )
+		return folder.exists()
+    }
 
    protected void executeStages() {
       for (Stage stage : stages) {
