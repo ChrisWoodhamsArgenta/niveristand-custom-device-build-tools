@@ -90,10 +90,6 @@ class Pipeline implements Serializable {
 	  this.configurationFile = getConfigFile()
    }
    
-	String getConfigFile() {
-         return 'build.json'
-	}
-
    void execute() {
 
       // build dependencies before starting this pipeline
@@ -138,6 +134,10 @@ class Pipeline implements Serializable {
 	   // DW: we don't run things in paralle yet, and validation cause build not to finish when another build starts at the current agent. Then validateBuild() needs to wait untill agent is free. It might need to be uncomented and investigated in the future
       //validateBuild()
    }
+   
+   	private String getConfigFile() {
+         return 'build.json'
+	}
 
    protected void executeStages() {
       for (Stage stage : stages) {
