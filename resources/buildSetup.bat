@@ -38,6 +38,8 @@ if exist %top_level_config% (
 )
 
 echo Very final config file path being used: %final_config_file%
+echo copying file from %final_config_file% to %top_level_config%
+copy /Y %final_config_file% %top_level_config%
 
 @echo off
 set "venv_path=env"
@@ -49,7 +51,7 @@ virtualenv %venv_path%
 call %venv_path%\\Scripts\\activate.bat
 
 pip install toml
-python niveristand-custom-device-build-tools\\resources\\toml2json.py %final_config_file%
+python niveristand-custom-device-build-tools\\resources\\toml2json.py %top_level_config%
 
 call %venv_path%\\Scripts\\deactivate.bat
 
