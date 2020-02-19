@@ -148,8 +148,8 @@ class Pipeline implements Serializable {
 		def workspace1 = manager.build.getEnvVars()["WORKSPACE"]
 		script.echo workspace1
 		def workspace1 = script.manager.build.getEnvVars()["WORKSPACE"]
-		script.echo workspace1
-		def workspacePath = script.env.WORKSPACE
+		script.echo workspace2
+		def workspace2 = script.env.WORKSPACE
 		def fullPath = "$script.env.WORKSPACE\$filePath"
 		script.echo workspacePath
 		script.echo fullPath
