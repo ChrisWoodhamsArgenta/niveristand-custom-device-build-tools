@@ -4,11 +4,11 @@ import ni.vsbuild.stages.*
 
 class Pipeline implements Serializable {
 
-   private String JSON_FILE = 'build.json'
 
    private static final String MANIFEST_FILE = 'Built/installer/manifest.json'
 
    def script
+   def JSON_FILE = 'build.json'
    PipelineInformation pipelineInformation
    def stages = []
 
