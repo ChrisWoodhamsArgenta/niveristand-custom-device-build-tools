@@ -135,7 +135,7 @@ class Pipeline implements Serializable {
    }
    
    	private void setConfigFile() {
-		if(doesFileExist('build.json'){
+		if(doesFileExist('build.json')){
          configurationFile =  'build.json'
 		}else{
 		 configurationFile =  'build_config/default.json'
