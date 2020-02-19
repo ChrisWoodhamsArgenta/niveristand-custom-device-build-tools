@@ -145,6 +145,10 @@ class Pipeline implements Serializable {
 	}
 	
 	def doesFileExist(filePath) {
+		def workspace1 = manager.build.getEnvVars()["WORKSPACE"]
+		script.echo workspace1
+		def workspace1 = script.manager.build.getEnvVars()["WORKSPACE"]
+		script.echo workspace1
 		def workspacePath = script.env.WORKSPACE
 		def fullPath = "$script.env.WORKSPACE\$filePath"
 		script.echo workspacePath
