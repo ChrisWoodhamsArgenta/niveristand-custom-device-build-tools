@@ -6,7 +6,8 @@ class Pipeline implements Serializable {
 
 
    private static final String MANIFEST_FILE = 'Built/installer/manifest.json'
-
+   
+   String configurationFile
    def script
    PipelineInformation pipelineInformation
    def stages = []
@@ -17,7 +18,6 @@ class Pipeline implements Serializable {
       BuildConfiguration buildConfiguration
       String lvVersion
       String manifestFile
-	  String configurationFile
       def stages = []
 
       Builder(def script, BuildConfiguration buildConfiguration, String lvVersion, String manifestFile) {
@@ -25,7 +25,6 @@ class Pipeline implements Serializable {
          this.buildConfiguration = buildConfiguration
          this.lvVersion = lvVersion
          this.manifestFile = manifestFile
-		 this.configurationFile = getConfigFile()
       }
 
       def withCodegenStage() {
@@ -59,10 +58,6 @@ class Pipeline implements Serializable {
             script.env.BRANCH_NAME.startsWith("hotfix"))
       }
 	  
-	  String getConfigFile() {
-         return 'build.json'
-      }
-
       def buildPipeline() {
          if(buildConfiguration.codegen || buildConfiguration.projects) {
             withCodegenStage()
@@ -89,9 +84,15 @@ class Pipeline implements Serializable {
    }
 
    Pipeline(script, PipelineInformation pipelineInformation) {
+		
       this.script = script
       this.pipelineInformation = pipelineInformation
+	  this.configurationFile = getConfigFile()
    }
+   
+	String getConfigFile() {
+         return 'build.json'
+	}
 
    void execute() {
 
