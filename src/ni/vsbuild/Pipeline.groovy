@@ -57,6 +57,10 @@ class Pipeline implements Serializable {
             (script.env.BRANCH_NAME.startsWith("release") ||
             script.env.BRANCH_NAME.startsWith("hotfix"))
       }
+	  
+	  def getConfigFile() {
+         return 'build.json'
+      }
 
       def buildPipeline() {
          if(buildConfiguration.codegen || buildConfiguration.projects) {
@@ -84,6 +88,7 @@ class Pipeline implements Serializable {
    }
 
    Pipeline(script, PipelineInformation pipelineInformation) {
+	  this.JSON_FILE = getConfigFile()
       this.script = script
       this.pipelineInformation = pipelineInformation
    }
@@ -109,13 +114,13 @@ class Pipeline implements Serializable {
             script.node(nodeLabel) {
                setup(lvVersion)
 			   
-			   echo 'test, displaying tigger cause'
+				script.echo 'test, displaying tigger cause'
 			   	// started by commit
-				echo "${currentBuild.getBuildCauses('jenkins.branch.BranchEventCause')}"
+				script.echo "${currentBuild.getBuildCauses('jenkins.branch.BranchEventCause')}"
 				// started by time
-				echo "${currentBuild.getBuildCauses('hudson.triggers.TimerTrigger$TimerTriggerCause')}"
+				script.echo "${currentBuild.getBuildCauses('hudson.triggers.TimerTrigger$TimerTriggerCause')}"
 				// started by user
-				echo "${currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')}"
+				script.echo "${currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')}"
 
                def configuration = BuildConfiguration.load(script, JSON_FILE, lvVersion)
                configuration.printInformation(script)
