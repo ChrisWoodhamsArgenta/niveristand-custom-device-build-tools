@@ -150,7 +150,7 @@ class Pipeline implements Serializable {
 	//	script.echo workspace2
 		def workspacePath = script.env.WORKSPACE
 		script.echo workspacePath
-		def fullPath = "$script.env.WORKSPACE\"+filePath
+		def fullPath = "$script.env.WORKSPACE\${filePath}"
 		script.echo fullPath
 		def folder = new File(fullPath)
 		return folder.exists()
