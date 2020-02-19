@@ -6,7 +6,6 @@ class Pipeline implements Serializable {
 
 
    private static final String MANIFEST_FILE = 'Built/installer/manifest.json'
-   String config_file
 
    def script
    PipelineInformation pipelineInformation
@@ -123,7 +122,7 @@ class Pipeline implements Serializable {
 				// started by user
 				script.echo "${currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')}"
 
-               def configuration = BuildConfiguration.load(script, this.config_file, lvVersion)
+               def configuration = BuildConfiguration.load(script, configurationFile, lvVersion)
                configuration.printInformation(script)
 
                def builder = new Builder(script, configuration, lvVersion, MANIFEST_FILE)
