@@ -7,6 +7,8 @@ echo trigger %trigger%
 
 set top_level_config=%1\build.toml
 set default_within_folder_config=%1\build_config\default.toml
+set branch_config_file=%1\build_config\%2.toml
+set branch_timer_config_file=%1\\build_config\\%2_t.toml
 set final_config_file=%top_level_config%
 echo %top_level_config%
 
@@ -16,7 +18,6 @@ if exist %top_level_config% (
    	 echo Top level file %top_level_config% does not exist, config is expected in build_config folder
     	if %3==timer (
     			echo Build has been triggered by timer, expected file name is %2_t.toml
-			set branch_timer_config_file=%1\build_config\%2_t.toml
 			if exist %branch_timer_config_file% (
 				echo Branch config file for time triggered builds exists: %branch_timer_config_file%
 				set final_config_file=%branch_timer_config_file%
@@ -24,9 +25,8 @@ if exist %top_level_config% (
 				echo Branch config file for time triggered builds does not exist, default file will be used: %default_within_folder_config%
 				set final_config_file=%default_within_folder_config%
 			)
-	) else (
+	)else (
 			echo Build has not been trigger by timer, expected file name is %2.toml
-			set branch_config_file=%1\build_config\%2.toml
 			if exist %branch_config_file% (
     							echo Branch config file exists: %branch_config_file%
 							set final_config_file=%branch_config_file%
