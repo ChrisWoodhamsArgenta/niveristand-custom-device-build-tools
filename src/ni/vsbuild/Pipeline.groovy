@@ -58,7 +58,7 @@ class Pipeline implements Serializable {
             script.env.BRANCH_NAME.startsWith("hotfix"))
       }
 	  
-	  def getConfigFile() {
+	  String getConfigFile() {
          return 'build.json'
       }
 
