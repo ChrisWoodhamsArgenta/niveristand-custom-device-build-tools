@@ -147,7 +147,9 @@ class Pipeline implements Serializable {
       }
       script.stage("Setup_$lvVersion") {
          script.cloneBuildTools()
-         script.buildSetup(lvVersion)
+		 def branchName = script.env.BRANCH_NAME
+		 echo branchName
+         script.buildSetup(lvVersion,branchName,'timer')
 
          // Write a manifest
          script.echo "Writing manifest to $MANIFEST_FILE"
