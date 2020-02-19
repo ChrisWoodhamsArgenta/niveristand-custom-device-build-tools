@@ -121,8 +121,8 @@ class Pipeline implements Serializable {
       }
 
       script.parallel builders
-
-      validateBuild()
+	   // DW: we don't run things in paralle yet, and validation cause build not to finish when another build starts at the current agent. Then validateBuild() needs to wait untill agent is free. It might need to be uncomented and investigated in the future
+      //validateBuild()
    }
 
    protected void executeStages() {
