@@ -6,9 +6,9 @@ class Pipeline implements Serializable {
 
 
    private static final String MANIFEST_FILE = 'Built/installer/manifest.json'
+   private String JSON_FILE
 
    def script
-   def JSON_FILE = 'build.json'
    PipelineInformation pipelineInformation
    def stages = []
 
