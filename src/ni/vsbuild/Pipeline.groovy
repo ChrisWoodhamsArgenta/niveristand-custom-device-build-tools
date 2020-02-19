@@ -149,7 +149,9 @@ class Pipeline implements Serializable {
          script.cloneBuildTools()
 		 def branchName = script.env.BRANCH_NAME
 		 script.echo branchName
-         script.buildSetup(lvVersion,branchName,'timer')
+		 def workspacePath = script.env.WORKSPACE
+		 script.echo workspacePath
+         script.buildSetup(lvVersion, workspacePath, branchName,'user')
 
          // Write a manifest
          script.echo "Writing manifest to $MANIFEST_FILE"

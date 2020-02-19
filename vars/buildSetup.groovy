@@ -1,6 +1,6 @@
-def call(lvVersion, branchName,triggerType) {
+def call(lvVersion,workspace, branchName,triggerType) {
    def programFiles = getWindowsVar("PROGRAMFILES(x86)")
    def baseVersion = (lvVersion =~ /^[0-9]+/).getAt(0)
    env."labviewPath_${lvVersion}" = "$programFiles\\National Instruments\\LabVIEW ${baseVersion}\\LabVIEW.exe"
-   bat "niveristand-custom-device-build-tools\\resources\\buildSetup.bat ${branchName} ${triggerType}"
+   bat "niveristand-custom-device-build-tools\\resources\\buildSetup.bat ${workspace} ${branchName} ${triggerType}"
 }
