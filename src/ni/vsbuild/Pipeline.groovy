@@ -87,7 +87,6 @@ class Pipeline implements Serializable {
 		
       this.script = script
       this.pipelineInformation = pipelineInformation
-	  this.configurationFile = getConfigFile()
    }
    
    void execute() {
@@ -135,8 +134,8 @@ class Pipeline implements Serializable {
       //validateBuild()
    }
    
-   	private String getConfigFile() {
-         return 'build.json'
+   	private void setConfigFile() {
+         configurationFile =  'build.json'
 	}
 
    protected void executeStages() {
