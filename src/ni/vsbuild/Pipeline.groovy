@@ -4,7 +4,7 @@ import ni.vsbuild.stages.*
 
 class Pipeline implements Serializable {
 
-   private static final String JSON_FILE = 'build.json'
+   private String JSON_FILE = 'build.json'
 
    private static final String MANIFEST_FILE = 'Built/installer/manifest.json'
 
