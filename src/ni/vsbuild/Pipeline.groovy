@@ -114,13 +114,13 @@ class Pipeline implements Serializable {
             script.node(nodeLabel) {
                setup(lvVersion)
 			   
-				script.echo 'test, displaying tigger cause'
+				//script.echo 'test, displaying tigger cause'
 			   	// started by commit
-				script.echo "${currentBuild.getBuildCauses('jenkins.branch.BranchEventCause')}"
+				//script.echo "${currentBuild.getBuildCauses('jenkins.branch.BranchEventCause')}"
 				// started by time
-				script.echo "${currentBuild.getBuildCauses('hudson.triggers.TimerTrigger$TimerTriggerCause')}"
+				//script.echo "${currentBuild.getBuildCauses('hudson.triggers.TimerTrigger$TimerTriggerCause')}"
 				// started by user
-				script.echo "${currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')}"
+				//script.echo "${currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')}"
 
                def configuration = BuildConfiguration.load(script, configurationFile, lvVersion)
                configuration.printInformation(script)
