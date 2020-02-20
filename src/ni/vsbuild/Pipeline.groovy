@@ -151,7 +151,20 @@ class Pipeline implements Serializable {
 		 script.echo branchName
 		 def workspacePath = script.env.WORKSPACE
 		 script.echo workspacePath
-         script.buildSetup(lvVersion, workspacePath, branchName,'user')
+		 def trigger = 'user_or_commit'
+		 
+		 // is started by timer by time
+		def trigger_cause = "${script.currentBuild.getBuildCauses('hudson.triggers.TimerTrigger$TimerTriggerCause')}"
+		script.echo trigger_cause
+		
+		if(trigger_cause.isEmpty())
+		{
+		}else
+		{
+			trigger = 'timer'
+		}
+		 
+         script.buildSetup(lvVersion, workspacePath, branchName,trigger)
 
          // Write a manifest
          script.echo "Writing manifest to $MANIFEST_FILE"
