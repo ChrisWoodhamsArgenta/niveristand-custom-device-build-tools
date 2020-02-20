@@ -157,7 +157,7 @@ class Pipeline implements Serializable {
 		def trigger_cause = "${script.currentBuild.getBuildCauses('hudson.triggers.TimerTrigger$TimerTriggerCause')}"
 		script.echo trigger_cause
 		
-		if(trigger=='[]')
+		if(trigger_cause=='[]')
 		{
 			
 		}else
