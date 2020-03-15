@@ -53,9 +53,10 @@ class Pipeline implements Serializable {
       // be appended to the release or hotfix branch name after a
       // dash (-) or slash (/).
       def shouldBuildPackage() {
-         return buildConfiguration.packageInfo &&
-            (script.env.BRANCH_NAME.startsWith("release") ||
-            script.env.BRANCH_NAME.startsWith("hotfix"))
+         return buildConfiguration.packageInfo
+			//&&
+            //(script.env.BRANCH_NAME.startsWith("release") ||
+            //script.env.BRANCH_NAME.startsWith("hotfix"))
       }
 
       def buildPipeline() {
