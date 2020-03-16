@@ -101,6 +101,10 @@ class Nipkg extends AbstractPackage {
    private String updateVersionVariables(text) {
       def baseVersion = getBaseVersion()
       def fullVersion = getFullVersion()
+	  script.echo 'base version:'
+	  script.echo "$baseVersion"
+	  script.echo 'full version:'
+	  script.echo "$fullVersion"
 
       def additionalReplacements = ['nipkg_version': fullVersion, 'display_version': baseVersion]
       return StringSubstitution.replaceStrings(text, lvVersion, additionalReplacements)
