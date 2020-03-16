@@ -17,8 +17,9 @@ class BuildConfiguration implements Serializable {
    public final def test
    public final def dependencies
    public final def packageInfo
+   public final def publish
 
-   private BuildConfiguration(archive, projects, codegen, build, test, dependencies, packageInfo) {
+   private BuildConfiguration(archive, projects, codegen, build, test, dependencies, packageInfo, publish) {
       this.archive = archive
       this.projects = projects
       this.codegen = codegen
@@ -26,6 +27,7 @@ class BuildConfiguration implements Serializable {
       this.test = test
       this.dependencies = dependencies
       this.packageInfo = packageInfo
+	  this.publish = publish
    }
 
    static BuildConfiguration load(def script, String jsonFile, String lvVersion) {
@@ -45,7 +47,8 @@ class BuildConfiguration implements Serializable {
          convertedJson.build,
          convertedJson.test,
          convertedJson.dependencies,
-         convertedJson.package)
+         convertedJson.package,
+		 convertedJson.publish)
    }
 
    public void printInformation(script) {
@@ -58,6 +61,7 @@ class BuildConfiguration implements Serializable {
             Tests: $test
             Dependencies: $dependencies
             Package: $packageInfo
+			Publish: $publish
          """.stripIndent()
 
       script.echo configurationString
