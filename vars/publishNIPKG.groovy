@@ -1,4 +1,4 @@
-def call(feed, package){
+def call(feed, pkg_name){
    def programFiles = getWindowsVar("PROGRAMFILES")
 
    // http://www.ni.com/documentation/en/ni-package-manager/18.5/manual/build-package-using-cli/
