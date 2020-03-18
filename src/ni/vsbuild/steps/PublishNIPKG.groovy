@@ -5,7 +5,7 @@ import ni.vsbuild.BuildConfiguration
 class PublishNIPKG extends LvStep {
 
    def feed
-   def package
+   def pkg_name
 
    PublishNIPKG(script, mapStep, lvVersion) {
       super(script, mapStep, lvVersion)
@@ -14,6 +14,6 @@ class PublishNIPKG extends LvStep {
    }
 
    void executeStep(BuildConfiguration configuration) {
-      script.publishNIPKG(feed, package)
+      script.publishNIPKG(feed, pkg_name)
    }
 }
