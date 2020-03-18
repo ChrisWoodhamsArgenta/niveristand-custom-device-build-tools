@@ -10,7 +10,7 @@ class PublishNIPKG extends LvStep {
    PublishNIPKG(script, mapStep, lvVersion) {
       super(script, mapStep, lvVersion)
       this.feed = mapStep.get('feed')
-	  this.package = mapStep.get('package')
+	  this.pkg_name = mapStep.get('package')
    }
 
    void executeStep(BuildConfiguration configuration) {
