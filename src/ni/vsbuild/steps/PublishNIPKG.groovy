@@ -4,16 +4,16 @@ import ni.vsbuild.BuildConfiguration
 
 class PublishNIPKG extends LvStep {
 
-   def variable
-   def path
+   def feed
+   def package
 
    PublishNIPKG(script, mapStep, lvVersion) {
       super(script, mapStep, lvVersion)
-      this.variable = mapStep.get('variable')
-	  this.path = mapStep.get('path')
+      this.feed = mapStep.get('feed')
+	  this.package = mapStep.get('package')
    }
 
    void executeStep(BuildConfiguration configuration) {
-      script.publishNIPKG(variable, path)
+      script.publishNIPKG(feed, package)
    }
 }
