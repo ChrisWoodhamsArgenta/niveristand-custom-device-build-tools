@@ -19,7 +19,7 @@ class StringSubstitution implements Serializable {
 	  
 	public static String addParameter(text, key, value) {
 
-	  def updatedText = text.append("$key: $value")
+	  def updatedText = text + "\n" + "$key: $value"
       return updatedText
    }
 }
