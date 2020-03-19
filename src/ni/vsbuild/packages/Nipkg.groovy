@@ -108,7 +108,7 @@ class Nipkg extends AbstractPackage {
 
       def additionalReplacements = ['nipkg_version': fullVersion, 'display_version': baseVersion]
 	  text = StringSubstitution.replaceStrings(text, lvVersion, additionalReplacements)
-	  text = StringSubstitution.replaceStrings.addParameter(text,'Version',fullVersion)
+	  text = StringSubstitution.addParameter(text,'Version',fullVersion)
 	  return text
       //return StringSubstitution.replaceStrings(text, lvVersion, additionalReplacements)
    }
