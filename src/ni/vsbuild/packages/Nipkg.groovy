@@ -107,7 +107,9 @@ class Nipkg extends AbstractPackage {
 	  script.echo "$fullVersion"
 
       def additionalReplacements = ['nipkg_version': fullVersion, 'display_version': baseVersion]
-      return StringSubstitution.replaceStrings(text, lvVersion, additionalReplacements)
+	  text = StringSubstitution.replaceStrings.addParameter(text,'Version',fullVersion)
+	  return text
+      //return StringSubstitution.replaceStrings(text, lvVersion, additionalReplacements)
    }
 
    private void stagePayload() {

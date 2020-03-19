@@ -14,7 +14,10 @@ class StringSubstitution implements Serializable {
       replacements.each { expression, value ->
          updatedText = updatedText.replaceAll("\\{$expression\\}", value)
       }
+	  
+	public static String addParameter(text, key, value) {
 
+	  updatedText = "$text \n $key: $value
       return updatedText
    }
 }
