@@ -17,7 +17,7 @@ class StringSubstitution implements Serializable {
 	  
 	public static String addParameter(text, key, value) {
 
-	  updatedText = "$text \n $key: $value
+	  updatedText = "$text" + "\n" + " $key: $value
       return updatedText
    }
 }
