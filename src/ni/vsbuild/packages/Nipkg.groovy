@@ -101,6 +101,7 @@ class Nipkg extends AbstractPackage {
    private String updateVersionVariables(text) {
       def baseVersion = getBaseVersion()
       def fullVersion = getFullVersion()
+	  def fullBuildVersion = getFullBuildVersion()
 	  script.echo 'base version:'
 	  script.echo "$baseVersion"
 	  script.echo 'full version:'
