@@ -12,7 +12,7 @@ def call(feed, pkg_name){
    bat "GetPackageName.bat $package_folder_path"
    //def packageName = bat returnStdout: true, script: "GetPackageName.bat $package_folder_path"
    def publishScript = "PublishPackage.bat"
-   def package_path = "$WORKSPACE\\Built\\installer\\$packageName"
+   def package_path = "$package_folder_path\\$packageName"
    bat "\"$publishScript\" \"$feed\" \"$package_path\""
 
 }
