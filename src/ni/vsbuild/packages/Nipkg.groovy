@@ -75,7 +75,7 @@ class Nipkg extends AbstractPackage {
    }
 
    private void updateControlFile() {
-      updateBuildFile(controlFile, CONTROL_DIRECTORY, CONTROL_FILE_NAME)
+      updateControlFileImplementation(controlFile, CONTROL_DIRECTORY, CONTROL_FILE_NAME)
    }
 
    private void updateInstructionsFile() {
@@ -92,6 +92,17 @@ class Nipkg extends AbstractPackage {
 
       script.writeFile file: "$PACKAGE_DIRECTORY\\$destination\\$outputFileName", text: updatedText
    }
+   
+   private void updateControlFileImplementation(fileName, destination, outputFileName) {
+      if(!script.fileExists(fileName)) {
+         return
+      }
+
+      def fileText = script.readFile(fileName)
+      def updatedText = updateControlVersionVariables(fileText)
+
+      script.writeFile file: "$PACKAGE_DIRECTORY\\$destination\\$outputFileName", text: updatedText
+   }
 
    // The plan is to enable automatic merging from master to
    // release or hotfix branch packages and not build packages
@@ -99,6 +110,18 @@ class Nipkg extends AbstractPackage {
    // be appended to the release or hotfix branch name after a
    // dash (-) or slash (/).
    private String updateVersionVariables(text) {
+      def baseVersion = getBaseVersion()
+      def fullVersion = getFullVersion()
+	  def fullBuildVersion = getFullBuildVersion()
+	  script.echo 'base version:'
+	  script.echo "$baseVersion"
+	  script.echo 'full version:'
+	  script.echo "$fullVersion"
+
+      def additionalReplacements = ['nipkg_version': fullVersion, 'display_version': baseVersion]
+      return StringSubstitution.replaceStrings(text, lvVersion, additionalReplacements)
+   }
+   private String updateControlVersionVariables(text) {
       def baseVersion = getBaseVersion()
       def fullVersion = getFullVersion()
 	  def fullBuildVersion = getFullBuildVersion()
