@@ -49,6 +49,9 @@ class Pipeline implements Serializable {
 	  
 	  def withPublishStage() {
          stages << new Publish(script, buildConfiguration, lvVersion)
+		 
+	  def withDeployStage() {
+         stages << new Deploy(script, buildConfiguration, lvVersion)
       }
 
       // The plan is to enable automatic merging from master to
@@ -86,6 +89,10 @@ class Pipeline implements Serializable {
 		 
 		 if(buildConfiguration.publish) {
             withPublishStage()
+         }
+		 
+		 if(buildConfiguration.deploy) {
+            withDeployStage()
          }
 
          return stages
