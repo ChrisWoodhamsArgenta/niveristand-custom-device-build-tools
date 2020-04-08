@@ -7,10 +7,14 @@ echo trigger %trigger%
 
 set top_level_config=%1\build.toml
 set default_within_folder_config=%1\build_config\default.toml
+set default_relase_config=%1\build_config\release.toml
 set branch_config_file=%1\build_config\%2.toml
 set branch_timer_config_file=%1\\build_config\\%2_t.toml
 set final_config_file=%top_level_config%
 echo %top_level_config%
+set branch=%2
+set branch_type=%branch:~0,7%
+echo %branch_type%
 
 if exist %top_level_config% (
     echo file %top_level_config% exists
@@ -31,8 +35,13 @@ if exist %top_level_config% (
     							echo Branch config file exists: %branch_config_file%
 							set final_config_file=%branch_config_file%
 			) else (
-				echo Branch config file does not exist, default file will be used: %default_within_folder_config%
-				set final_config_file=%default_within_folder_config%
+				if %branch_type%==release (
+					echo This is release branch, default release file will be used: %default_relase_config%
+					set final_config_file=%default_relase_config%
+				) else (
+					echo Branch config file does not exist, default file will be used: %default_within_folder_config%
+					set final_config_file=%default_within_folder_config%
+				)
 			)
 	)
 )
