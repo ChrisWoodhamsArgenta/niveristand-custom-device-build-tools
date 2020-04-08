@@ -49,6 +49,7 @@ class Pipeline implements Serializable {
 	  
 	  def withPublishStage() {
          stages << new Publish(script, buildConfiguration, lvVersion)
+	  }
 		 
 	  def withDeployStage() {
          stages << new Deploy(script, buildConfiguration, lvVersion)
