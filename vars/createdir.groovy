@@ -3,6 +3,6 @@ def call(directory){
 	def finaldir = ""
 	tokens.each{ token ->
 		finaldir = finaldir + token + "\\"
-		bat "(mkdir $finaldir) ^& IF %ERRORLEVEL% LSS 8 SET ERRORLEVEL=0"
+		bat "(mkdir \"$finaldir\") ^& IF %ERRORLEVEL% LSS 8 SET ERRORLEVEL=0"
 	}
 }
