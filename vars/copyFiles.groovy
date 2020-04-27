@@ -22,6 +22,7 @@ def call(sourceDirectory, destinationDirectory, options=[:]) {
       commandSwitches = "$commandSwitches /mir"
    }
 
+   createdir(destinationDirectory)
    // robocopy uses multiple return codes for success
    // https://ss64.com/nt/robocopy-exit.html
    bat "($copyCommand $commandSwitches) ^& IF %ERRORLEVEL% LSS 8 SET ERRORLEVEL=0"

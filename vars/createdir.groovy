@@ -1,7 +1,8 @@
 def call(directory){
 	def tokens = directory.tokenize("\")
-	println tokens.size()
+	def finaldir = ""
 	tokens.each{ token ->
-		println token
+		finaldir = finaldir + token + "\"
+		bat "(mkdir $finaldir) ^& IF %ERRORLEVEL% LSS 8 SET ERRORLEVEL=0"
 	}
 }
