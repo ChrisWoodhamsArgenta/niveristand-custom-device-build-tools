@@ -4,7 +4,7 @@ def call(sourceDirectory, destinationDirectory, options=[:]) {
    // These switches are for console output suppression so we don't get a bunch of junk
    // in our logs
    // https://ss64.com/nt/robocopy.html
-   def commandSwitches = "/nfl /ndl /njh /njs /nc /ns /np"
+   def commandSwitches = "/nfl /ndl /njh /njs /nc /ns /np /COPY:DT"  //added /COPY:DT so that it works with SAMBA, if I gain more knowledge about samba config it might be taken back
 
    if(options.exclusions) {
       commandSwitches = "$commandSwitches /xf \"${options.exclusions}\""
