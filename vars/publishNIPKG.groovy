@@ -9,9 +9,9 @@ def call(feed, pkg_name){
    def packageName = nipkgOutput.trim()
    
 
-   bat "GetPackageName.bat $package_folder_path"
+   bat "$WORKSPACE\\niveristand-custom-device-build-tools\\resources\\GetPackageName.bat $package_folder_path"
    //def packageName = bat returnStdout: true, script: "GetPackageName.bat $package_folder_path"
-   def publishScript = "PublishPackage.bat"
+   def publishScript = "$WORKSPACE\\niveristand-custom-device-build-tools\\resources\\PublishPackage.bat"
    def package_path = "$package_folder_path\\$packageName"
    bat "\"$publishScript\" \"$feed\" \"$package_path\""
 
