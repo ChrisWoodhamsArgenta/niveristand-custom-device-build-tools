@@ -47,8 +47,10 @@ class Archive extends AbstractStage {
       }
 
       archiveLocation = "${configuration.archive.get('archive_location')}\\" +
-         "$organization" +
-         "export\\${script.env.BRANCH_NAME}\\" +
+ //      remove strange, for me DW , path
+ //        "$organization" +
+ //        "export\\${script.env.BRANCH_NAME}\\" +
+          "${script.env.BRANCH_NAME}\\" +
          "Build ${script.currentBuild.number}"
    }
 
