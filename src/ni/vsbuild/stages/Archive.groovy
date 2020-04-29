@@ -45,10 +45,14 @@ class Archive extends AbstractStage {
       else {
          organization = "$organization\\"
       }
-
+	  //add repo name to path 
+      def repository = script.getComponentParts()['repo']
       archiveLocation = "${configuration.archive.get('archive_location')}\\" +
-         "$organization" +
-         "export\\${script.env.BRANCH_NAME}\\" +
+ //      remove strange, for me DW , path
+ //        "$organization" +
+ //        "export\\${script.env.BRANCH_NAME}\\" +
+		  "$repository\\" +
+          "${script.env.BRANCH_NAME}\\" +
          "Build ${script.currentBuild.number}"
    }
 
