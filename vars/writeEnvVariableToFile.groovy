@@ -7,5 +7,5 @@ def call(variable, path){
 	myVar =BUILD_NUMBER
    }
 	echo myVar
-     bat "echo %BUILD_NUMBER%> \"$WORKSPACE\\${path}\""
+     bat "echo %$myVar%> \"$WORKSPACE\\${path}\""
 }
