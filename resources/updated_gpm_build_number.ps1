@@ -1,4 +1,7 @@
-﻿$buildNumber = Get-Content .\buildnumber.csv;
+﻿param([string] $workspace)
+
+$path = $workspace + "\buildnumber.csv"
+$buildNumber = Get-Content $path
 $buildNumber = $buildNumber.Trim();
 
 <#
