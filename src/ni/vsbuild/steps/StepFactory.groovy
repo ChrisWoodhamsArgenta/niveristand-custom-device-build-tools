@@ -58,6 +58,9 @@ class StepFactory implements Serializable {
 	  if(type == 'publishNIPKG') {
          return new PublishNIPKG(script, mapStep, lvVersion)
       }
+	  if(type == 'publishGPM') {
+         return new PublishGPM(script, mapStep, lvVersion)
+      }
 
       script.failBuild("Type \'$type\' is invalid for step \'${mapStep.get('name')}\'.")
    }
