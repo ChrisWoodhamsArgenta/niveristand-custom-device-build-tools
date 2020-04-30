@@ -1,8 +1,8 @@
 package ni.vsbuild.stages
 
-class Deploy extends AbstractStepStage {
+class TestDeploy extends AbstractStepStage {
 
-   Deploy(script, configuration, lvVersion) {
+   TestDeploy(script, configuration, lvVersion) {
       super(script, 'TestDeploy', configuration, lvVersion)
    }
 
