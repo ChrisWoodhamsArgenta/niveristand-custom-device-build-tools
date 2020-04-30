@@ -54,6 +54,10 @@ class Pipeline implements Serializable {
 	  def withDeployStage() {
          stages << new Deploy(script, buildConfiguration, lvVersion)
       }
+	  
+	  def withTestDeployStage() {
+         stages << new TestDeploy(script, buildConfiguration, lvVersion)
+      }
 
       // The plan is to enable automatic merging from master to
       // release or hotfix branch packages and not build packages
@@ -94,6 +98,10 @@ class Pipeline implements Serializable {
 		 
 		 if(buildConfiguration.deploy) {
             withDeployStage()
+         }
+		 
+		 if(buildConfiguration.testdeploy) {
+            withTestDeployStage()
          }
 
          return stages
