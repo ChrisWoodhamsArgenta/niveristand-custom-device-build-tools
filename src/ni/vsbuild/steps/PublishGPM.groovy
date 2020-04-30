@@ -7,7 +7,7 @@ class PublishGPM extends LvStep {
    def registry
    def pkg_name
 
-   PublishNIPKG(script, mapStep, lvVersion) {
+   PublishGPM(script, mapStep, lvVersion) {
       super(script, mapStep, lvVersion)
       this.registry = mapStep.get('registry')
 	  this.pkg_name = mapStep.get('package')
