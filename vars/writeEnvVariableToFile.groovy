@@ -3,11 +3,11 @@ def call(variable, path){
    // not finished it will output only BRANCH_NAME
    if(variable == BUILD_NUMBER)
    {
-	bat "echo %$BUILD_NUMBER%> \"$WORKSPACE\\${path}\""
+	bat "echo %BUILD_NUMBER%> \"$WORKSPACE\\${path}\""
    }
    else
    {
-	bat "echo %$BRANCH_NAME%> \"$WORKSPACE\\${path}\""
+	bat "echo %BRANCH_NAME%> \"$WORKSPACE\\${path}\""
    }
      
 }
