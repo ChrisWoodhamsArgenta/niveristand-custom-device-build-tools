@@ -229,8 +229,9 @@ class Pipeline implements Serializable {
       if(hasVersion()) {
          baseVersion = getBaseVersion()
       }
+	  def workspace_path = script.env.WORKSPACE
 
-      script.writeFile file: "$WORKSPACE\\$version1.txt", text: baseVersion
+      script.writeFile file: "$workspace_path\\$version1.txt", text: baseVersion
    }
 
    // This method is here to catch builds with issue 50:
