@@ -227,7 +227,7 @@ class Pipeline implements Serializable {
    
     private void updateVersionFile() {
 	  def baseVersion = '0.2.0'
-      if(hasVersion()) {
+      if(hasVersion() == 1) {
          baseVersion = getBaseVersion()
       }
 	  def csvVersion = baseVersion.replaceAll('\\.',',')
