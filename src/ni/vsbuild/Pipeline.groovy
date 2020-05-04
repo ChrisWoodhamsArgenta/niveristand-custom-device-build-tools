@@ -229,7 +229,7 @@ class Pipeline implements Serializable {
       if(hasVersion()) {
          baseVersion = getBaseVersion()
       }
-	  def csvVersion = baseVersion.replaceAll('.)',',')
+	  def csvVersion = baseVersion.replaceAll('.',',')
 	  def workspace_path = script.env.WORKSPACE
 
       script.writeFile file: "$workspace_path\\version.txt", text: csvVersion
