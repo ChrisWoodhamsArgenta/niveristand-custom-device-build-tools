@@ -230,9 +230,6 @@ class Pipeline implements Serializable {
          baseVersion = getBaseVersion()
       }
 
-      def fileText = script.readFile(fileName)
-      def updatedText = updateVersionVariables(fileText)
-
       script.writeFile file: "$WORKSPACE\\$version1.txt", text: baseVersion
    }
 
