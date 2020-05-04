@@ -141,7 +141,7 @@ class Pipeline implements Serializable {
                this.stages = builder.buildPipeline()
 				
 				//DW temporary storage for version
-				//updateVersionFile()
+				updateVersionFile()
 				updateBuildNumberFile()
                executeStages()
             }
@@ -213,7 +213,7 @@ class Pipeline implements Serializable {
       return baseVersion
    }
    
-    private def hasVersion() {
+    private def hasVersion1() {
       def baseVersion = script.env.BRANCH_NAME.split("[-/]")[1]
       def versionPartCount = baseVersion.tokenize(".").size()
 
@@ -225,9 +225,14 @@ class Pipeline implements Serializable {
       return baseVersion
    }
    
+    private def hasVersion() {
+	  return (script.env.BRANCH_NAME.startsWith("release") || script.env.BRANCH_NAME.startsWith("hotfix"))
+   }
+        
+   
     private void updateVersionFile() {
 	  def baseVersion = '0.2.0'
-      if(hasVersion() == 1) {
+      if(hasVersion()) {
          baseVersion = getBaseVersion()
       }
 	  def csvVersion = baseVersion.replaceAll('\\.',',')
