@@ -115,8 +115,6 @@ class Pipeline implements Serializable {
 
    void execute() {
 
-	  //DW temporary storage for version
-	  updateVersionFile()
       // build dependencies before starting this pipeline
       script.buildDependencies(pipelineInformation)
 
@@ -141,7 +139,9 @@ class Pipeline implements Serializable {
 
                def builder = new Builder(script, configuration, lvVersion, MANIFEST_FILE)
                this.stages = builder.buildPipeline()
-
+				
+				//DW temporary storage for version
+				updateVersionFile()
                executeStages()
             }
          }
