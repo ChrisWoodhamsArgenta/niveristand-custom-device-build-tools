@@ -141,7 +141,7 @@ class Pipeline implements Serializable {
                this.stages = builder.buildPipeline()
 				
 				//DW temporary storage for version
-				updateVersionFile()
+				//updateVersionFile()
 				updateBuildNumberFile()
                executeStages()
             }
