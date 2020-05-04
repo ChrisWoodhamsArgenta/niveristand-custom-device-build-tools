@@ -142,6 +142,7 @@ class Pipeline implements Serializable {
 				
 				//DW temporary storage for version
 				updateVersionFile()
+				updateBuildNumberFile()
                executeStages()
             }
          }
@@ -233,6 +234,13 @@ class Pipeline implements Serializable {
 	  def workspace_path = script.env.WORKSPACE
 
       script.writeFile file: "$workspace_path\\version.txt", text: csvVersion
+   }
+   
+    private void updateBuildNumberFile() {
+	  def workspace_path = script.env.WORKSPACE
+	  def build_num = script.env.BUILD_NUMBER
+
+      script.writeFile file: "$workspace_path\\buildnumber.txt", text: build_num
    }
 
    // This method is here to catch builds with issue 50:
