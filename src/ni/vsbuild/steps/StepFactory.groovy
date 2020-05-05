@@ -23,6 +23,10 @@ class StepFactory implements Serializable {
       if(type == 'lvBuildSpec') {
          return new LvBuildSpecStep(script, mapStep, lvVersion)
       }
+
+      if(type == 'lvBuildAllWithVersion') {
+         return new LvBuildAllWithVersionStep(script, mapStep, lvVersion)
+      }
 	  
 	  if(type == 'lvBuildSpecWithVersion') {
          return new LvBuildSpecWithVersionStep(script, mapStep, lvVersion)
