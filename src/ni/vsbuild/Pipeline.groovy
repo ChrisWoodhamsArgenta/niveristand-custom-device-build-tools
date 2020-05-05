@@ -139,7 +139,10 @@ class Pipeline implements Serializable {
 
                def builder = new Builder(script, configuration, lvVersion, MANIFEST_FILE)
                this.stages = builder.buildPipeline()
-
+				
+				//DW temporary storage for version
+				updateVersionFile()
+				updateBuildNumberFile()
                executeStages()
             }
          }
@@ -196,6 +199,53 @@ class Pipeline implements Serializable {
          script.echo "Writing manifest to $MANIFEST_FILE"
          script.writeJSON file: MANIFEST_FILE, json: manifest, pretty: 3
       }
+   }
+   
+    private def getBaseVersion() {
+      def baseVersion = script.env.BRANCH_NAME.split("[-/]")[1]
+      def versionPartCount = baseVersion.tokenize(".").size()
+
+      def versionPartsToDisplay = 3
+      for(versionPartCount; versionPartCount < versionPartsToDisplay; versionPartCount++) {
+         baseVersion = "${baseVersion}.0"
+      }
+
+      return baseVersion
+   }
+   
+    private def hasVersion1() {
+      def baseVersion = script.env.BRANCH_NAME.split("[-/]")[1]
+      def versionPartCount = baseVersion.tokenize(".").size()
+
+      def versionPartsToDisplay = 3
+	  
+	  def branchHasVersion = 0
+	  if(versionPartCount == versionPartsToDisplay) branchHasVersion=1
+
+      return baseVersion
+   }
+   
+    private def hasVersion() {
+	  return (script.env.BRANCH_NAME.startsWith("release") || script.env.BRANCH_NAME.startsWith("hotfix"))
+   }
+        
+   
+    private void updateVersionFile() {
+	  def baseVersion = '0.2.0'
+      if(hasVersion()) {
+         baseVersion = getBaseVersion()
+      }
+	  def csvVersion = baseVersion.replaceAll('\\.',',')
+	  def workspace_path = script.env.WORKSPACE
+
+      script.writeFile file: "$workspace_path\\version.txt", text: csvVersion
+   }
+   
+    private void updateBuildNumberFile() {
+	  def workspace_path = script.env.WORKSPACE
+	  def build_num = script.env.BUILD_NUMBER
+
+      script.writeFile file: "$workspace_path\\buildnumber.txt", text: build_num
    }
 
    // This method is here to catch builds with issue 50:
