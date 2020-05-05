@@ -7,6 +7,6 @@ class LvBuildAllWithVersionStep extends LvBuildStep {
    }
 
    void executeBuildStep(String projectPath) {
-      script.lvBuildAllWithVersion(projectPath, lvVersion)
+      script.lvBuildAll(projectPath, lvVersion)
    }
 }
