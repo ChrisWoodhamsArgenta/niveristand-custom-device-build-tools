@@ -15,7 +15,7 @@ def call(project, lvVersion){
     echo "$baseVersion"
 	echo "$build_num"
    
-   def version = "baseVersion.$build_num"
+   def version = "$baseVersion.$build_num"
    echo "$version"
   
    def logFileName = getLogName(project)
