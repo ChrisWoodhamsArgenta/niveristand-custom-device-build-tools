@@ -132,7 +132,7 @@ class Pipeline implements Serializable {
 
          builders[lvVersion] = {
             script.node(nodeLabel) {
-               setup(lvVersion)
+               setup(lvVersion,nodeLabel)
 
                def configuration = BuildConfiguration.load(script, JSON_FILE, lvVersion)
                configuration.printInformation(script)
@@ -163,7 +163,7 @@ class Pipeline implements Serializable {
       }
    }
 
-   private void setup(lvVersion) {
+   private void setup(lvVersion,nodeLabel) {
       def manifest = script.readJSON text: '{}'
 
       script.stage("Checkout_$lvVersion") {
@@ -193,7 +193,7 @@ class Pipeline implements Serializable {
 			trigger = 'timer'
 		}
 		 
-         script.buildSetup(lvVersion, workspacePath, branchName,trigger)
+         script.buildSetup(lvVersion, workspacePath, branchName,trigger,nodeLabel)
 
          // Write a manifest
          script.echo "Writing manifest to $MANIFEST_FILE"
