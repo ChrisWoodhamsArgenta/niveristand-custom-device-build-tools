@@ -2,12 +2,12 @@ def call(project, lvVersion){
    echo "Building all build specs in project at $project"
    
     def baseVersion = env.BRANCH_NAME.split("[-/]")[1]
-    //def versionPartCount = baseVersion.tokenize(".").size()
+    def versionPartCount = baseVersion.tokenize(".").size()
 
-    //def versionPartsToDisplay = 3
-    //for(versionPartCount; versionPartCount < versionPartsToDisplay; versionPartCount++) {
-    //    baseVersion = "${baseVersion}.0"
-    //}
+    def versionPartsToDisplay = 3
+    for(versionPartCount; versionPartCount < versionPartsToDisplay; versionPartCount++) {
+        baseVersion = "${baseVersion}.0"
+    }
    
 	//def build_num = env.BUILD_NUMBER
 	
