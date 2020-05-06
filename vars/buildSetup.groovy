@@ -1,7 +1,7 @@
 def call(lvVersion,workspace, branchName,triggerType,nodeLabel) {
-	echo "Node $nodeLabel ${nodeLabel}."
+	echo "Node $nodeLabel"
    def programFiles = getWindowsVar("PROGRAMFILES(x86)")
-   if(nodeLabel.grep("x64") || nodeLabel.contains("x64")){
+   if(nodeLabel.contains("x64")){
 		programFiles = getWindowsVar("PROGRAMFILES")
    }
    def baseVersion = (lvVersion =~ /^[0-9]+/).getAt(0)
