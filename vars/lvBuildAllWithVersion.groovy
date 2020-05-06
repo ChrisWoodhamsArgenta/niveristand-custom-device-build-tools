@@ -9,10 +9,11 @@ def call(project, lvVersion){
         baseVersion = "${baseVersion}.0"
     }
    
-	//def build_num = env.BUILD_NUMBER
+	def build_num = env.BUILD_NUMBER
 	
 	//def version = $baseVersion + "." + build_num
     echo "$baseVersion"
+	echo "$build_num"
    
    def logFileName = getLogName(project)
    labviewcli("-OperationName ExecuteAllBuildSpecsWithVersion -ProjectPath \"$WORKSPACE\\$project\" -Version \"1.2.3.4\" -LogFilePath \"$WORKSPACE\\lvBuildAll_${logFileName}.log\"", lvVersion)
