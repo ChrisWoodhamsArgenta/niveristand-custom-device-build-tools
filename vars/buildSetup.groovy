@@ -1,5 +1,5 @@
 def call(lvVersion,workspace, branchName,triggerType,nodeLabel) {
-	echo '$nodeLabel'
+	echo "Node $nodeLabel ${nodeLabel}."
    def programFiles = getWindowsVar("PROGRAMFILES(x86)")
    if(nodeLabel.grep("x64")){
 		programFiles = getWindowsVar("PROGRAMFILES")
