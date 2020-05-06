@@ -1,7 +1,10 @@
 def call(project, lvVersion){
    echo "Building all build specs in project at $project"
    
-    def baseVersion = env.BRANCH_NAME.split("[-/]")[1]
+    def baseVersion = "0.1.0"
+    if( env.BRANCH_NAME.startsWith("release") || env.BRANCH_NAME.startsWith("hotfix")){
+    baseVersion = env.BRANCH_NAME.split("[-/]")[1]
+	}
     def versionPartCount = baseVersion.tokenize(".").size()
 
     def versionPartsToDisplay = 3
