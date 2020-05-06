@@ -3,6 +3,7 @@ def call(lvVersion,workspace, branchName,triggerType,nodeLabel) {
    def programFiles = getWindowsVar("PROGRAMFILES(x86)")
    if((nodeLabel.contains("x64")) || (nodeLabel.endsWith("x64"))){
 		programFiles = getWindowsVar("PROGRAMFILES")
+		programFiles = "C:\\Program Files"
 		echo "64 bit version"
    }
    def baseVersion = (lvVersion =~ /^[0-9]+/).getAt(0)
