@@ -7,7 +7,8 @@ class TestDeploy extends AbstractStepStage {
    }
 
    void executeStage() {
-	  script.node('nipkg')
-      executeSteps(configuration.testdeploy)
+	  script.node('nipkg'){
+		executeSteps(configuration.testdeploy)
+	  }
    }
 }
