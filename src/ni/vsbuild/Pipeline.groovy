@@ -107,6 +107,16 @@ class Pipeline implements Serializable {
          return stages
       }
    }
+   
+	def buildTestDeployPipeline() {
+ 
+		if(buildConfiguration.testdeploy) {
+            withTestDeployStage()
+         }
+
+         return stages
+      }
+   }
 
    Pipeline(script, PipelineInformation pipelineInformation) {
       this.script = script
@@ -146,10 +156,12 @@ class Pipeline implements Serializable {
                executeStages()
             }
 			def deployNodeLabel = 'WinDeployNIPKG'
+			this.stages = builder.buildTestDeployPipeline()
 			script.node(deployNodeLabel) {
 				//if(this.buildConfiguration.testdeploy) {
 					setup(lvVersion,deployNodeLabel)
 				//}
+				executeStages()
 			}
          }
       }
