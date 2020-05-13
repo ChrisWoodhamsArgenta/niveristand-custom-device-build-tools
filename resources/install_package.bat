@@ -1,1 +1,1 @@
-nipkg install %1 -y --accept-eulas >nul 2>nul
+Powershell.exe -executionpolicy remotesigned -File %~dp0\install_package.ps1 -package_name %1
