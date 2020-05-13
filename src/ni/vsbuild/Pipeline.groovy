@@ -147,9 +147,9 @@ class Pipeline implements Serializable {
             }
 			def deployNodeLabel = 'WinDeployNIPKG'
 			script.node(deployNodeLabel) {
-				if(this.buildConfiguration.testdeploy) {
+				//if(this.buildConfiguration.testdeploy) {
 					setup(lvVersion,deployNodeLabel)
-				}
+				//}
 			}
          }
       }
