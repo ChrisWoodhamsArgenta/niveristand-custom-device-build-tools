@@ -106,10 +106,8 @@ class Pipeline implements Serializable {
 
          return stages
       }
-   }
-   
-	def buildTestDeployPipeline() {
- 
+	  def buildTestDeployPipeline() {
+	
 		if(buildConfiguration.testdeploy) {
             withTestDeployStage()
          }
