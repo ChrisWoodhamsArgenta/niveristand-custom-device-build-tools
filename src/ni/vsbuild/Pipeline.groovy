@@ -154,7 +154,8 @@ class Pipeline implements Serializable {
                executeStages()
             }
 			def deployNodeLabel = 'WinDeployNIPKG'
-			this.stages = builder.buildTestDeployPipeline()
+			def builderDeploy = new Builder(script, configuration, lvVersion, MANIFEST_FILE)
+			this.stages = builderDeploy.buildTestDeployPipeline()
 			script.node(deployNodeLabel) {
 				//if(this.buildConfiguration.testdeploy) {
 					setup(lvVersion,deployNodeLabel)
