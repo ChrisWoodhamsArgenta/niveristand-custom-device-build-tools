@@ -158,7 +158,7 @@ class Pipeline implements Serializable {
 				setup(lvVersion,deployNodeLabel)
 				def configuration1 = BuildConfiguration.load(script, JSON_FILE, lvVersion)
 				configuration1.printInformation(script)
-				def builderDeploy1 = new Builder(script, configuration, lvVersion, MANIFEST_FILE)
+				def builderDeploy1 = new Builder(script, configuration1, lvVersion, MANIFEST_FILE)
 				this.stages = builderDeploy1.buildTestDeployPipeline()
 				
 				//if(this.buildConfiguration.testdeploy) {
