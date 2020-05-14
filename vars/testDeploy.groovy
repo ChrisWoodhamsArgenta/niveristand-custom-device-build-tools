@@ -30,5 +30,5 @@ def call(feed,pkg_name,exe_path,lvVersion){
    bat "nipkg add-feed --name=test_feed $feed"
    bat "nipkg update"
    bat "\"$installScript\" $pkg_name"
-   bat "\"$testScript\" $exe_path $version"
+   bat "\"$testScript\" \"$exe_path\" $version"
 }
