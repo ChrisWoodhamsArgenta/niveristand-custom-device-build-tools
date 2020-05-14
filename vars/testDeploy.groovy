@@ -24,7 +24,7 @@ def call(feed,pkg_name,exe_path,lvVersion){
    echo "$version"
    
    // now build and test packages
-   def instalANDtestScript = "$WORKSPACE\\niveristand-custom-device-build-tools\\resources\\install_and_test.bat"
+   //def instalANDtestScript = "$WORKSPACE\\niveristand-custom-device-build-tools\\resources\\install_and_test.bat"
    def installScript = "$WORKSPACE\\niveristand-custom-device-build-tools\\resources\\install_package.bat"
    def testScript = "$WORKSPACE\\niveristand-custom-device-build-tools\\resources\\test_app.bat"
    bat "nipkg add-feed --name=test_feed $feed"
