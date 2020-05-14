@@ -14,11 +14,18 @@ Wait-Job $j -Timeout $timeoutSeconds | out-null
 if ($j.State -eq "Completed") 
 {
     $result = Receive-Job -Job $j
-    $result
-    #if($result -eq "1.1.1.1"){ "Success" }
-    #else { throw "version not equalto 1.1.1.2" }
-    $msg = "Success! Version: " + $result + " installed."+"Shoudl be:"+$version
-    $msg
+    $app_ver =  $result -match '[0-9]\.[0-9]\.[0-9]\.[0-9]'
+    $app_ver = $app_ver -replace "v", ""
+
+    if($app_ver -eq $version){ 
+         $msg = "Success! "+"Expected version: "+$version + ". Installed version: " + $app_ver +"."
+         $msg
+    }
+    else { 
+        $err_msg = "version not equal to: " +$version
+        throw $err_msg
+    }
+   
     
 
 }
