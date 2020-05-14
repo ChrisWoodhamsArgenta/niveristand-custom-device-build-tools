@@ -1,5 +1,5 @@
 def call(feed,pkg_name,exe_path,lvVersion){
-   echo "Building all build specs in project at $project"
+   echo "Testing deployment of $pkg_name"
    
    
    // version resolving -> should be move into one common function
