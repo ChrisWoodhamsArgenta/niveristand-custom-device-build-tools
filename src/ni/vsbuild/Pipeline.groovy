@@ -153,17 +153,21 @@ class Pipeline implements Serializable {
 				updateBuildNumberFile()
                executeStages()
             }
-			def deployNodeLabel = 'nipkg'
-			script.node(deployNodeLabel) {
-				setup(lvVersion,deployNodeLabel)
-				def configuration1 = BuildConfiguration.load(script, JSON_FILE, lvVersion)
-				configuration1.printInformation(script)
-				def builderDeploy1 = new Builder(script, configuration1, lvVersion, MANIFEST_FILE)
-				this.stages = builderDeploy1.buildTestDeployPipeline()
-				
-				//if(this.buildConfiguration.testdeploy) {
-				//}
-				executeStages()
+			
+			// get configuration to check if there is test deploy stage 
+			def configurationX = BuildConfiguration.load(script, JSON_FILE, lvVersion)
+			
+			if(configurationX.testdeploy) {
+				// TestDeploy
+				def deployNodeLabel = 'nipkg'
+				script.node(deployNodeLabel) {
+					setup(lvVersion,deployNodeLabel)
+					def configuration1 = BuildConfiguration.load(script, JSON_FILE, lvVersion)
+					configuration1.printInformation(script)
+					def builderDeploy1 = new Builder(script, configuration1, lvVersion, MANIFEST_FILE)
+					this.stages = builderDeploy1.buildTestDeployPipeline()
+					executeStages()
+				}
 			}
          }
       }
