@@ -23,6 +23,13 @@ def call(feed,pkg_name,exe_path,lvVersion){
    def version = "$baseVersion.$build_num"
    echo "$version"
    
+   // add standard feeds
+   
+   bat "nipkg add-feed --name=ni-labview-2017-runtime-engine-x86-2017-released https://download.ni.com/support/nipkg/products/ni-l/ni-labview-2017-runtime-engine-x86/17.6/released"
+   bat "nipkg add-feed --name=ni-labview-2017-runtime-engine-x86-2017-released-critical https://download.ni.com/support/nipkg/products/ni-l/ni-labview-2017-runtime-engine-x86/17.6/released-critical"
+   bat "nipkg add-feed --name=ni-xnet-19-5-released https://download.ni.com/support/nipkg/products/ni-x/ni-xnet/19.5/released"
+   bat "nipkg add-feed --name=ni-xnet-19-5-released-critical https://download.ni.com/support/nipkg/products/ni-x/ni-xnet/19.5/released-critical"
+   
    // now build and test packages
    //def instalANDtestScript = "$WORKSPACE\\niveristand-custom-device-build-tools\\resources\\install_and_test.bat"
    def installScript = "$WORKSPACE\\niveristand-custom-device-build-tools\\resources\\install_package.bat"
