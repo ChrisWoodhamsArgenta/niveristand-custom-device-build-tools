@@ -6,16 +6,16 @@ class TestDeployStep extends LvStep {
 
    def feed
    def package
-   def version
+   def exe_path
 
    TestDeployStep(script, mapStep, lvVersion) {
       super(script, mapStep, lvVersion)
       this.feed = mapStep.get('feed')
 	  this.package = mapStep.get('package')
-	  this.version = mapStep.get('version')
+	  this.exe_path = mapStep.get('exe_path')
    }
 
    void executeStep(BuildConfiguration configuration) {
-      script.testDeploy(feed,package,version,lvVersion)
+      script.testDeploy(feed,package,exe_path,lvVersion)
    }
 }

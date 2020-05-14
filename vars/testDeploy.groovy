@@ -1,4 +1,4 @@
-def call(feed,package,version,lvVersion){
+def call(feed,package,exe_path,lvVersion){
    echo "Building all build specs in project at $project"
    
    
@@ -25,5 +25,5 @@ def call(feed,package,version,lvVersion){
    
    // now build and test packages
    def instalANDtestScript = "$WORKSPACE\\niveristand-custom-device-build-tools\\resources\\install_and_test.bat"
-   bat "\"$instalANDtestScript\""
+   bat "\"$instalANDtestScript\" $exe_path"
 }
