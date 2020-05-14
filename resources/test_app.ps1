@@ -1,4 +1,4 @@
-﻿param([string] $exe_path )
+﻿param([string] $exe_path, [string] $version)
 
 $string = '&"{0}" version' -f $exe_path
 $string
@@ -17,8 +17,9 @@ if ($j.State -eq "Completed")
     $result
     #if($result -eq "1.1.1.1"){ "Success" }
     #else { throw "version not equalto 1.1.1.2" }
-    $msg = "Success! Version: " + $result + " installed."
+    $msg = "Success! Version: " + $result + " installed."+"Shoudl be:"+$version
     $msg
+    
 
 }
 elseif ($j.State -eq "Running") { "interrupted" }
