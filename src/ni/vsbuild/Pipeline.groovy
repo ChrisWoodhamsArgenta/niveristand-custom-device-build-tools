@@ -137,14 +137,14 @@ class Pipeline implements Serializable {
          if (pipelineInformation.nodeLabel?.trim()) {
             nodeLabel = "$nodeLabel && ${pipelineInformation.nodeLabel}"
          }
-
+		 def testdeploy1
          builders[lvVersion] = {
             script.node(nodeLabel) {
                setup(lvVersion,nodeLabel)
 
                def configuration = BuildConfiguration.load(script, JSON_FILE, lvVersion)
                configuration.printInformation(script)
-
+				testdeploy1 = configuration.testdeploy
                def builder = new Builder(script, configuration, lvVersion, MANIFEST_FILE)
                this.stages = builder.buildPipeline()
 				
@@ -155,9 +155,9 @@ class Pipeline implements Serializable {
             }
 			
 			// get configuration to check if there is test deploy stage 
-			def configurationX = BuildConfiguration.load(script, JSON_FILE, lvVersion)
+			//def configurationX = BuildConfiguration.load(script, JSON_FILE, lvVersion)
 			
-			if(configurationX.testdeploy) {
+			if(testdeploy1) {
 				// TestDeploy
 				def deployNodeLabel = 'nipkg'
 				script.node(deployNodeLabel) {
