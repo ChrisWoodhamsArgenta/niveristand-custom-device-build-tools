@@ -5,17 +5,17 @@ import ni.vsbuild.BuildConfiguration
 class TestDeployStep extends LvStep {
 
    def feed
-   def package
+   def pkg_name
    def exe_path
 
    TestDeployStep(script, mapStep, lvVersion) {
       super(script, mapStep, lvVersion)
       this.feed = mapStep.get('feed')
-	  this.package = mapStep.get('package')
+	  this.pkg_name = mapStep.get('package')
 	  this.exe_path = mapStep.get('exe_path')
    }
 
    void executeStep(BuildConfiguration configuration) {
-      script.testDeploy(feed,package,exe_path,lvVersion)
+      script.testDeploy(feed,pkg_name,exe_path,lvVersion)
    }
 }
