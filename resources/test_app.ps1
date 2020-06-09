@@ -29,7 +29,7 @@ if ($j.State -eq "Completed")
     
 
 }
-elseif ($j.State -eq "Running") { "interrupted" }
+elseif ($j.State -eq "Running") { throw "not openned on time" }
 else 
 { 
    throw "up not started within 10 sec"
