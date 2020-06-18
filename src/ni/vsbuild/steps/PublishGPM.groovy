@@ -15,8 +15,8 @@ class PublishGPM extends LvStep {
 
    void executeStep(BuildConfiguration configuration) {
 	  $ws = "echo %BUILD_NUMBER%> \"$WORKSPACE\\${path}\""
-	  $src_source = "$WORKSPACE\source\"
-	  $dst_source = "$WORKSPACE\gpm_tmp\source\"
+	  $src_source = "$WORKSPACE\\source\\"
+	  $dst_source = "$WORKSPACE\\gpm_tmp\\source\\"
 	  script.copyFiles(src_source, dst_source)
       script.publishGPM(registry, pkg_name)
    }
