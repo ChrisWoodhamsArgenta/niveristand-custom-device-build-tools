@@ -1,10 +1,12 @@
-﻿param([string] $workspace)
+﻿param([string] $workspace, [string] $buildNumber)
 
 try
 {
+     <#
     $path = $workspace + "\buildnumber.txt"
     $buildNumber = Get-Content $path
     $buildNumber = $buildNumber.Trim();
+    #>
 
     <#
     $jsonContent = Get-Content .\gpackage.json 
