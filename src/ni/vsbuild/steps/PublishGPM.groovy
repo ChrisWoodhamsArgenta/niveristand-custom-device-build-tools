@@ -17,9 +17,9 @@ class PublishGPM extends LvStep {
    }
 
    void executeStep(BuildConfiguration configuration) {
-	  src_source = "${script.env.WORKSPACE}\\source\\"
-	  dst_source = "${script.env.WORKSPACE}\\gpm_tmp\\source\\"
-	  script.copyFiles(src_source, dst_source)
+	  //src_source = "${script.env.WORKSPACE}\\source\\"
+	  //dst_source = "${script.env.WORKSPACE}\\gpm_tmp\\source\\"
+	  //script.copyFiles(src_source, dst_source)
       script.publishGPM(registry, pkg_name)
    }
 }
