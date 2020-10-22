@@ -1,15 +1,16 @@
-def call(feed, pkg_name){
+def call(feed, pkg_name,pkg_version,dependencies,package_dst_path,package_src_path){
    def programFiles = getWindowsVar("PROGRAMFILES")
    def package_folder_path = "$WORKSPACE\\$pkg_name"
-   // http://www.ni.com/documentation/en/ni-package-manager/18.5/manual/build-package-using-cli/
-   //   def nipkgExePath = "$programFiles\\National Instruments\\NI Package Manager\\nipkg.exe"
-   
-   def nipkgOutput = bat returnStdout: true, script: "echo off & dir \"$package_folder_path\\*.nipkg\" /B & echo on"
-   nipkgOutput = (nipkgOutput =~ /[\w\-\+\.]+.nipkg/)[0]
-   def packageName = nipkgOutput.trim()
-   
-   def publishScript = "$WORKSPACE\\niveristand-custom-device-build-tools\\resources\\PublishPackage.bat"
-   def package_path = "$package_folder_path\\$packageName"
-   bat "\"$publishScript\" \"$feed\" \"$package_path\""
 
+	//def pkg_version = "0.0.0-1"
+	//def dependencies = ""
+	//def package_dst_path = "BootVolume\\Argenta\\TestApp"
+	def package_abs_src_path = "$WORKSPACE\\$Built"
+	
+	def pkg_dir = "$WORKSPACE\\$nipkg"
+  
+   def buildandpublishScript = "$WORKSPACE\\niveristand-custom-device-build-tools\\resources\\NIPKGBuildAndPublish.bat"
+   
+   bat "\"$buildandpublishScript\" \"$feed\" \"$pkg_name\" \"$pkg_version\" \"$dependencies\" \"$package_dst_path\"  \"$package_abs_src_path\" \"$pkg_dir\" " 
+   
 }
