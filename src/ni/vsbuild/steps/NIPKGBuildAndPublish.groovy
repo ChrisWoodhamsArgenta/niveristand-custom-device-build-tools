@@ -16,7 +16,7 @@ class NIPKGBuildAndPublish extends LvStep {
       super(script, mapStep, lvVersion)
       this.feed = mapStep.get('feed')
 	  this.pkg_name = mapStep.get('package')
-	  this.pkg_version = getFullBuildVersion()
+	  this.pkg_version = getFullBuildVersionP()
 	  this.dependencies = mapStep.get('dependencies')
 	  this.package_dst_path = mapStep.get('destination')
 	  this.package_src_path = mapStep.get('source')
@@ -26,7 +26,7 @@ class NIPKGBuildAndPublish extends LvStep {
       script.nipkgBuildAndPublish(feed, pkg_name,pkg_version,dependencies,package_dst_path,package_src_path)
    }
    
-    private def getBaseVersion() {
+    private def getBaseVersionP() {
       def baseVersion = script.env.BRANCH_NAME.split("[-/]")[1]
       def versionPartCount = baseVersion.tokenize(".").size()
 
@@ -38,14 +38,14 @@ class NIPKGBuildAndPublish extends LvStep {
       return baseVersion
    }
 
-   private def getFullVersion() {
-      def baseVersion = getBaseVersion()
+   private def getFullVersionP() {
+      def baseVersion = getBaseVersionP()
       def fullVersion = "${baseVersion}.${script.currentBuild.number}"
 
       return fullVersion
    }
-   private def getFullBuildVersion() {
-      def baseVersion = getBaseVersion()
+   private def getFullBuildVersionP() {
+      def baseVersion = getBaseVersionP()
       def fullVersion = "${baseVersion}-${script.currentBuild.number}"
 
       return fullVersion
