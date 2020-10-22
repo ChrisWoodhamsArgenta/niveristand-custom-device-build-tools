@@ -7,8 +7,8 @@ Remove-Item $pkg_dir -Recurse -Force -ErrorAction SilentlyContinue
 $control_dir = $pkg_dir+"\\control"
 $data_dir = $pkg_dir+"\\data"
 
-New-Item -ItemType Directory -Path $control_dir
-New-Item -ItemType Directory -Path $data_dir
+$result  = New-Item -ItemType Directory -Path $control_dir
+$result = New-Item -ItemType Directory -Path $data_dir
 
 #create required by NIPKG debian file
 $debianbinaryFilePath = $pkg_dir+"\\debian-binary"
@@ -32,7 +32,6 @@ $versionLine = "Version: "+$pkg_version + "`n"
 $dependencyLine = "Depends: "+$dependencies + "`n"
 
 $controlFile = $controlFile + $nameLine + $versionLine + $dependencyLine
-$controlFile
 
 
 #save control file
