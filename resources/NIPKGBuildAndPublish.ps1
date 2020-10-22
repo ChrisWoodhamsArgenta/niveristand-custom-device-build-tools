@@ -1,4 +1,7 @@
-param([string] $feed, [string] $package_src_path)
+param([string] $feed, [string] $pkg_name,[string] $pkg_version,  [string] $package_src_path, [string] $package_dst_path)
+
+
+
 
 $files = Get-ChildItem -Path $package_src_path
 $package_name = $files.Name
