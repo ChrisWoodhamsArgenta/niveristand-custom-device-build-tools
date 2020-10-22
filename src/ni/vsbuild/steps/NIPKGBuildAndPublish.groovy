@@ -14,9 +14,23 @@ class NIPKGBuildAndPublish extends LvStep {
 
    NIPKGBuildAndPublish(script, mapStep, lvVersion) {
       super(script, mapStep, lvVersion)
+	  
+	  //get version
+	  def baseVersion = script.env.BRANCH_NAME.split("[-/]")[1]
+      def versionPartCount = baseVersion.tokenize(".").size()
+
+      def versionPartsToDisplay = 3
+      for(versionPartCount; versionPartCount < versionPartsToDisplay; versionPartCount++) {
+         baseVersion = "${baseVersion}.0"
+      }
+	  
+      def fullVersion = "${baseVersion}-${script.currentBuild.number}"
+	  
+	  
+	  // rest
       this.feed = mapStep.get('feed')
 	  this.pkg_name = mapStep.get('package')
-	  this.pkg_version = getFullBuildVersionP()
+	  this.pkg_version = fullVersion
 	  this.dependencies = mapStep.get('dependencies')
 	  this.package_dst_path = mapStep.get('destination')
 	  this.package_src_path = mapStep.get('source')
