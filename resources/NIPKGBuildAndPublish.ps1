@@ -1,6 +1,7 @@
-param([string] $feed = "V:\NIPKG\TestFeed" , [string] $pkg_name = "test-pkg",[string] $pkg_version = "0.0.0-1", [string] $pkg_dir = "C:\Projects\niveristand-custom-device-build-tools\resources\nipkg", [string] $package_src_path = "C:\Projects\test", [string] $package_dst_path = "BootVolume\Argenta\TestApplication",[string] $dependencies = "")
+param([string] $feed = "V:\NIPKG\TestFeed" , [string] $pkg_name = "test-pkg",[string] $pkg_version = "0.0.0-3", [string] $pkg_dir = "C:\Projects\niveristand-custom-device-build-tools\resources\nipkg", [string] $package_src_path = "C:\Projects\test", [string] $package_dst_path = "BootVolume\Argenta\TestApplication",[string] $dependencies = "")
 
-$package_full_name = .\NIPKGBuild.ps1 -pkg_name $pkg_name -pkg_version $pkg_version -pkg_dir $pkg_dir -package_src_path $package_src_path -package_dst_path $package_dst_path -dependencies $dependencies
+$build_script_path = $PSScriptRoot+"\" +"NIPKGBuild.ps1"
+$package_full_name = &$build_script_path -pkg_name $pkg_name -pkg_version $pkg_version -pkg_dir $pkg_dir -package_src_path $package_src_path -package_dst_path $package_dst_path -dependencies $dependencies
 $package_full_name
 
 $package_path = $pkg_dir + "\" + $package_full_name
