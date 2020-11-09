@@ -108,3 +108,5 @@ nipkg add-feed --name=ni-ethercat-19-0-released       https://download.ni.com/su
 nipkg add-feed --name=ni-ethercat-19-0-released-critical      https://download.ni.com/support/nipkg/products/ni-e/ni-ethercat/19.0/released-critical
 nipkg add-feed --name=ni-labview-2017-runtime-engine-2017-released    https://download.ni.com/support/nipkg/products/ni-l/ni-labview-2017-runtime-engine/17.6/released
 nipkg add-feed --name=ni-labview-2017-runtime-engine-2017-released-critical   https://download.ni.com/support/nipkg/products/ni-l/ni-labview-2017-runtime-engine/17.6/released-critical
+nipkg add-feed --name=ni-labview-2020-runtime-engine-x86-2020-released        https://download.ni.com/support/nipkg/products/ni-l/ni-labview-2020-runtime-engine-x86/20.0/released
+nipkg add-feed --name=ni-labview-2020-runtime-engine-x86-2020-released-critical       https://download.ni.com/support/nipkg/products/ni-l/ni-labview-2020-runtime-engine-x86/20.0/released-critical
