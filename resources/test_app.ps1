@@ -22,7 +22,7 @@ if ($j.State -eq "Completed")
          $msg
     }
     else { 
-        $err_msg = "version not equal to: " +$version
+        $err_msg = "version equal to: " +$app_ver + " and should: " + $version
         throw $err_msg
     }
    
